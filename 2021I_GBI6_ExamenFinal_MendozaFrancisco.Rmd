@@ -1,7 +1,7 @@
 ---
 title: "GBI6 - BIOINFORMÁTICA"
 subtitle: "EXAMEN FINAL"
-author: 'Apellido Nombre'
+author: 'Mendoza Francisco'
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -77,7 +77,14 @@ Para comprender la data de esta evaluación se requiere conocer el significado d
 
 ### [0.5 PUNTOS] 1.1 Defina su directorio de trabajo. 
 ```{r wd}
+#Primero se imprime el directorio de trbajo
+impDirectorio <- getwd()
 
+#Despues se define dicho directorio con setwd()
+defDirectorio <- setwd(impDirectorio)
+
+#Resultado en pantalla
+print(defDirectorio)
 ```
 
 ### [0.5 PUNTOS] 1.2. Cargue la data "mRNA_expr.csv"
