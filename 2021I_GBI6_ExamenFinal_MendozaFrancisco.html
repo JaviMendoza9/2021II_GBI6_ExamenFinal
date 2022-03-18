@@ -1707,20 +1707,20 @@ análisis se han seleccionado solamente 7 de ellos).</p></li>
 <pre><code>## Loading required package: stringr</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creacion de carpeta</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Se recomienda poner en comentarios la instruccion de la linea 104 una vez se realice</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&#39;data&#39;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dir.create(&#39;data&#39;)</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Se mueve el achivo &quot;mRNA_expr.csv&quot; a la carpeta creada</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#ademas se permite la sobreescritura siempre y cuando se tenga el archivo en la caprte</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#donde esta el archivo principal</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Por ese motivo, es recomentable correr una sola vez la opcion de mover archivo</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Una vez se hace, se recomienda poner en comentarios la instruccion de la linea 111</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">move_files</span>(<span class="st">&#39;mRNA_expr.csv&#39;</span>, <span class="st">&#39;data&#39;</span>, <span class="at">overwrite=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 1 file moved. 0 failed.</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Se carga el archivo con ayuda de read.csv, ubicada en la carpeta data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;data/mRNA_expr.csv&#39;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Se comprueba que se cargo, imprimiendo las priemras filas</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df,<span class="dv">5</span>)</span></code></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#move_files(&#39;mRNA_expr.csv&#39;, &#39;data&#39;, overwrite=TRUE)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Se carga el archivo con ayuda de read.csv, ubicada en la carpeta data</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;data/mRNA_expr.csv&#39;</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Se comprueba que se cargo, imprimiendo las priemras filas</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   bcr_patient_barcode dataset     GATA3      PTEN      XBP1      ESR1      MUC1
 ## 1               BRCA1    BRCA  2.870500 1.3613571  2.983333  3.084250  1.652125
 ## 2               BRCA2    BRCA  2.166250 0.4283571  2.550833  2.386000  3.080250
@@ -1737,7 +1737,21 @@ análisis se han seleccionado solamente 7 de ellos).</p></li>
 <div id="punto-1.3-cree-una-función-de-nombre-long_df-para-transformar-la-data-df-de-la-forma-wide-a-long." class="section level3">
 <h3>[1 PUNTO] 1.3 Cree una función de nombre <code>long_df</code> para
 transformar la data <code>df</code> de la forma wide a long.</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Escriba aquí la función long_df</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Se define previamente la libreria tidyr</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#libreria que me permite ocupar ciertas funciones de &quot;de cambiar formato&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;filesstrings&quot;) una vez se intala el paquete se comprueba la version</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Version 3.2.2</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gather que me permite el hacer el cambio de formato</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.1.3</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Se define la funcion en torno al dataset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>long_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Se asigana el valor del cambio a otra variable</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  data_long <span class="ot">&lt;-</span> <span class="fu">gather</span>(df, gen, expresion_level, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">factor_key=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Retorno del valor del ejericio</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#return(df_long)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="punto-genere-la-data-df_long-utilizandola-función-long_df." class="section level3">
 <h3>[1 PUNTO] Genere la data <code>df_long</code> utilizandola función
