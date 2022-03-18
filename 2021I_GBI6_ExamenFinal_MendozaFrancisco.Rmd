@@ -201,7 +201,7 @@ Para esta pregunta tiene que utilizar la data ```df_long```.
 library(ggplot2)
 
 #Declaracion de la funcion con parametro dataset
-tcga_boxplotsa <- function(dataset){
+tcga_boxplots <- function(data){
   #Se crean distintos bucles para la generacion de los distintos boxplot
   #En este caso se logra usando el comando filter
   #'GATA3', 'PTEN', 'XBP1', 'ESR1', 'MUC1', 'FN1', 'GAPDH'
@@ -264,7 +264,19 @@ reg_gen_expression <- function(c){
 ### [0.5 PUNTOS] 2.5. Utilizando la función ```lapply()``` genera la lista ```reg_genplots``` con las gráficas para cada par de genes posibles. Recuerde que tiene 7 tipos de genes, se debe tener todas las combinaciones posibles por pares de genes (combinatoria sin repetición).
 ```{r list_regplots}
 # Escriba el código para generar la lista. 
+#A continuacion se agregaran los valores obtenidos previamente a una lista
+#Combianciond de los genes
+#genx <- c("gGATA3", "gPTEN", "gXBP1", "gESR1", "gMUC1", "gf_FN1", "gGAPDH")
+b1 <- unique(df_long$gen)
 
+#combinations(n=7, r=2, v=genx)
+#nrow(combinations(n=10, r=3, v=genx))
+#Combinaciones sin repeticiones 7!/2!(7-2)!=21
+b2 <- combn(b1,2,simplify = FALSE)
+
+#Con ayuda de lapply se asigana los valores
+reg_genplots <- lapply(b2,reg_gen_expression)
+reg_genplots
 ```
 
 
