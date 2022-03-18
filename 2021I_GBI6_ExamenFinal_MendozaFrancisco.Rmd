@@ -155,15 +155,16 @@ head(df_long,5)
 ### [0.5 PUNTOS] 1.5 A partir de la data ```df_long```, genere un **Descriptive table** (librería ```sjPlot```) y guárdelo en el subdirectorio "result"  con el nombre **mRNA_expr_summary.doc** (previamente debe seleccionar las celdas adecuadas con funciones de la librería ```dplyr``` en conjunto con el operador ```%>%```). 
 ```{r desc_table}
 #install.packages("kableExtra")
-#Librerias a utilizar: dplyr 1.0.8, sjplot 2.8.10
-library(dplyr)
-library(sjPlot)
+#Librerias a utilizar 
+library(dplyr)            #1.0.8
+library(sjPlot)           #2.8.10
+library(sjmisc)           #2.8.9
 
 #Se seleccionan previamente las celdas de la tabla
 group_table <-long_df(df) %>% group_by(dataset, gen)
 
 #Creacion de carpeta
-dir.create('result')
+#dir.create('result')
 
 #Se realiza la descripcion de las tabla y se guarda en un archivo
 desc_table <-descr(x=group_table,
@@ -183,7 +184,23 @@ desc_table
 
 ```{tex}
 # Escriba aquí su interpretación 
+# install.packages("ggplot2")
+#Libreria usada ggplot 3.3.5
+library(ggplot2)
 
+#Declaracion de la funcion con parametro dataset
+tcga_boxplotsa <- function(dataset){
+  #Se crean distintos bucles para la generacion de los distintos boxplot
+  #En este caso se logra usando el comando filter
+  #'GATA3', 'PTEN', 'XBP1', 'ESR1', 'MUC1', 'FN1', 'GAPDH'
+  #Grafica del boxplot basado en un filtro
+  a <- filter (df_long,dataset == data) %>% 
+              ggplot(aes(x=gen,y=expresion_level,color = gen)) +
+              geom_boxplot(outlier.shape = NA) +
+              geom_jitter(colour = 2)
+  #Valor resultante que retorna
+  return(a)
+}
 ```
 
 
