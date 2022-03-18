@@ -227,18 +227,37 @@ cancertype_boxplots
 
 ### [0.5 PUNTOS] 2.3 Guarde en el subdirectorio ```result``` el tercer plot de la lista ```cancertype_boxplots``` con el nombre ```boxplot3.png```. La definición de a figura debe ser de 300dpi. 
 ```{r boxplot3}
-# Escriba el código para guardar la tercera figura de la lista. 
-
-
+#Solo el tercero
+c <- cancertype_boxplots[[3]]
+c
+#Se guarda
+ggsave("result/boxplot3.png",dpi = 300,limitsize = TRUE,)
 ```
 
 
 ### [1 PUNTO] 2.4 Escriba la función ```reg_gen_expression```, con el parámetro ```gen```. En este caso la función visualizará una gráfica de nube de puntos (geom_point) y una regresión por tipo de "dataset". La gráfica será de comparación de gen1 con gen2; por ejemplo en el eje "x" ```GATA3``` y en el eje "y"" ```FN1```.  
 
 ```{r reg_gen_exp}
-# Escriba aquí su función reg_gen_expression
-
-
+#Se  crea la funcion para la expresion del gen
+reg_gen_expression <- function(c){
+  #Baso en el dato previo se obtienen 2 genes
+  #será de comparación de gen1 con gen2; por ejemplo en el eje "x" ```GATA3``` y en el eje "y"" ```FN1```.
+  reg_gen1 = c[1]
+  reg_gen2 = c[2]
+  #Una ves esten elegidos se filtran
+  reg_gen3 <- filter (df_long, gen == reg_gen1)
+  reg_gen4 <- filter (df_long, gen == reg_gen2)
+  
+  #Ahora esos genes se agregan a un dataset con ayuda de: cbind y tibble
+  reg_gen5 <- cbind(reg_gen3,reg_gen4)
+  
+  #Se grafica
+  a1 <- tibble("dataset" = reg_gen5[,1],"gen1" = reg_gen5[,3],"gen2" = reg_gen5[,6]) %>%
+                              ggplot(aes(x = gen1, y = gen2, color = dataset)) + 
+                              geom_point(size = 2) + 
+                              geom_smooth(method = lm, formula = y~x,se = FALSE)
+  return(a1)
+}
 ```
 
 
