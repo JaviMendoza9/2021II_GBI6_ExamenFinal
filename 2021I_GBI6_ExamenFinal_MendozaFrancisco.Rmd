@@ -183,7 +183,11 @@ desc_table
 
 
 ```{tex}
-
+\La tabla de estadistica descriptiva posee los datos para cada uno de los genes, su media, 
+\desviacion estadar y otros datos estadisticos, esta presenta valores para cada uno de los canceres y genes 
+\presentes en el dataframe de estudio. Donde, el cancer mas comun y menos comun son: BRCA, OV y KIRP, asimismo 
+\sus genes de expresion mas comunes son: ESR1, FN1 y PTEN, respectivamente. Por el contrario, los demas canceres
+\estan dentro de una media de 88 a 154 observaciones con genes, parecidos a este. 
 ```
 
 
@@ -294,7 +298,21 @@ ggsave("result/regresion11.pdf",dpi = 300,limitsize = TRUE,)
 
 ```{tex}
 # Esciba aquí su intepretación
+\Boxplot
 
+\La imagen del boxplot indica, una distribucion d epuntos asimetricos, con valores atipicos y gran presencia
+\para los genes 2 a 5 en los quintiles 2, 3 y 4. De igual manera, no posee una distribucion estandar y ademas 
+\la mayoria de datos con valores negativos se encuentra dentro del gen GATA3, ubicados en su mayoria en Q1 y Q2.
+\Por el contrario, el gen ESR1 posee mayor cantidad de datos positivos, ubicados en su mayoria en el Q4 y Q5
+
+
+
+\Regresion
+\Los datos de la regresion indican que, existe una extrecha relacion entre los valores obtenidos en el boxplot y
+\tabla descriptiva, donde estos posee mayor presencia en el centro del grafico (se observa una nube densa de
+\puntos), y ademas la concentracion de los genes 1 y 2 (en este caso PTEN y GAPDH) va a variar sustancialmente,
+\donde el 1 aumenta versus el 2. Por otro lado, los canceres con mayor frecuencia en la grafica son BRCA y OV,
+\lo cual se comprueba en el ya mencionado analisis estadistico descriptivo
 ```
 
 ## 3. CONTROL DE LA VERSIÓN [1 PUNTO]. Se verficará en ell repositorio de GitHub. 
