@@ -89,8 +89,34 @@ print(defDirectorio)
 
 ### [0.5 PUNTOS] 1.2. Cargue la data "mRNA_expr.csv"
 ```{r data}
-df <- "cargue la data"
+#Para resolver este ejercicio se tiene previamente descargado el archivo:
+#2021I_GBI6_ExamenFinal, tipo ".Rmd" que tiene este script de resolucion
+#mRNA_expr, tipo ".csv" que tiene la base de datos
 
+#Nos menciona que se debe cargar la data "mRNA_expr.csv".
+#Por lo tanto, se crea una nueva carpeta donde se MOVERA de la carpeta "GBI6_ExamenFinal"
+#A la nueva carpeta
+#libreria que me permite ocupar ciertas funciones de "files"
+#install.packages("filesstrings") una vez se intala el paquete se comprueba la version
+#Version 3.2.2
+library(filesstrings)
+
+#Creacion de carpeta
+#Se recomienda poner en comentarios la instruccion de la linea 104 una vez se realice
+dir.create('data')
+
+#Se mueve el achivo "mRNA_expr.csv" a la carpeta creada
+#ademas se permite la sobreescritura siempre y cuando se tenga el archivo en la caprte
+#donde esta el archivo principal
+#Por ese motivo, es recomentable correr una sola vez la opcion de mover archivo
+#Una vez se hace, se recomienda poner en comentarios la instruccion de la linea 111
+move_files('mRNA_expr.csv', 'data', overwrite=TRUE)
+
+#Se carga el archivo con ayuda de read.csv, ubicada en la carpeta data
+df <-read.csv(file = 'data/mRNA_expr.csv')
+
+#Se comprueba que se cargo, imprimiendo las priemras filas
+head(df,5)
 ```
 
 ### [1 PUNTO] 1.3 Cree una función de nombre ```long_df``` para transformar la data ```df``` de la forma wide a long.
